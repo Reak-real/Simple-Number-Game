@@ -1,29 +1,67 @@
-# Number Guesser 🎲
+# 🎯 Number Guesser
 
-A simple number guessing game written in C++.
+A simple command-line number guessing game written in C++. The program picks a random number and you try to guess it — with hints whether you're too high or too low.
 
-## What does it do?
+---
 
-The computer picks a random number between 1 and 100. Your job is to guess it – after each attempt it tells you whether to go higher or lower.
+## How It Works
 
-## How to run
+1. Enter your name
+2. Choose a number range (e.g. `100` → the secret number will be between 1 and 100)
+3. Guess until you get it right
+4. Your score (number of attempts) gets saved to `scores.txt`
 
-1. Open the project in CLion
-2. Press the Play button ▶️
-3. Type a number and press Enter
+---
+
+## Build & Run
+
+```bash
+g++ -o number_guesser main.cpp
+./number_guesser
+```
+
+---
 
 ## Example
 
 ```
-Guess a number between 1 and 100: 50
-Too low!
-Guess a number between 1 and 100: 75
-Too high!
-Guess a number between 1 and 100: 63
-You won!
+Your Name: Max
+Max Number Range: 100
+guess (1-100): 50
+Too High!
+guess (1-100): 25
+Too Low!
+guess (1-100): 37
+YOU WIN! Attempts needed: 3
 ```
 
-## Built with
+---
 
-- C++20
-- CLion
+## Scores
+
+Results are saved to `scores.txt` in the same directory:
+
+```
+Max: 3 (1-100)
+Anna: 7 (1-50)
+```
+
+---
+
+## Known Bugs
+
+- **Invalid input crashes the program** — if you type something that's not a number (e.g. `abc` or `1s`), `std::cin` enters a fail state and the game gets stuck in an infinite loop.
+
+  **Workaround:** Only enter whole numbers.
+
+  **Planned fix:** Add input validation with `cin.fail()` checking.
+
+---
+
+## Project Structure
+
+```
+.
+├── main.cpp       # All game logic
+└── scores.txt     # Created automatically after first win
+```
